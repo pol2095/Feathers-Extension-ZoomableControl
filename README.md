@@ -7,7 +7,7 @@ The ZoomableControl is a control that allows you to pinch to zoom.
 ## Quick Links
 
 * [Website](http://pol2095.free.fr/Starling-Feathers-Extensions/)
-* [API Reference](http://pol2095.free.fr/Starling-Feathers-Extensions/docs/feathers/extensions/dataGrid/package-detail.html)
+* [API Reference](http://pol2095.free.fr/Starling-Feathers-Extensions/docs/feathers/extensions/zoomable/package-detail.html)
 * [Discussion Forum](http://forum.starling-framework.org/forum/feathers)
 * [Github Project](https://github.com/pol2095/Feathers-Extension-ZoomableControl)
 
