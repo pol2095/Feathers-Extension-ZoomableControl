@@ -15,8 +15,6 @@ package feathers.extensions.zoomable
 	
     /**
 	 * A control that allows you to pinch to zoom.
-	 *
-	 * @see feathers.extensions.zoomable.ZoomableControl
 	 */
 	public class ZoomableControl extends FeathersControl
     {
