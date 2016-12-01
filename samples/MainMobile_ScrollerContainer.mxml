@@ -39,11 +39,12 @@
 		]]>
 	</fx:Script>
 	<f:ScrollContainer id="scrollContainer" height="300">
-	<f:layout>
-		<f:VerticalLayout/>
-	</f:layout>
-	<f:Button label="addImage" triggered="image_triggeredHandler(event)"/>
-	<components:ZoomableControl id="zoomableControl" scroller="{scrollContainer}"/>
-	<f:Button label="addButton" triggered="button_triggeredHandler(event)"/>
+		<f:layout>
+			<f:VerticalLayout/>
+		</f:layout>
+		
+		<f:Button label="addImage" triggered="image_triggeredHandler(event)"/>
+		<components:ZoomableControl id="zoomableControl" scroller="{scrollContainer}"/>
+		<f:Button label="addButton" triggered="button_triggeredHandler(event)"/>
 	</f:ScrollContainer>
 </f:Application>
