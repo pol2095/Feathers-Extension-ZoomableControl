@@ -17,7 +17,7 @@ package feathers.extensions.utils.events {
 		/**
 		 * Dispatched when a ZoomableControl is pinch to zoom.
 		 */
-		public static var TOUCHING:String = "touching";
+		public static var PINCHING:String = "pinching";
 		
 		public function TouchSheetEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false) {
 			super(type, bubbles, cancelable);

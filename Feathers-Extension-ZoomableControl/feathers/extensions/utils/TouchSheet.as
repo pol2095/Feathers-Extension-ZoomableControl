@@ -14,10 +14,10 @@ package feathers.extensions.utils
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
 	import feathers.extensions.utils.events.TouchSheetEvent;
-
+	
     public class TouchSheet extends Sprite
     {
-        public function TouchSheet(contents:DisplayObject=null)
+		public function TouchSheet(contents:DisplayObject, stage:Object)
         {
             addEventListener(TouchEvent.TOUCH, onTouch);
             
@@ -29,7 +29,7 @@ package feathers.extensions.utils
         
         private function onTouch(event:TouchEvent):void
         {
-            var touches:Vector.<Touch> = event.getTouches(this, TouchPhase.MOVED);
+			var touches:Vector.<Touch> = event.getTouches(stage, TouchPhase.MOVED);
             
             if (touches.length == 2)
             {
@@ -48,7 +48,7 @@ package feathers.extensions.utils
                 scaleX *= sizeDiff;
                 scaleY *= sizeDiff;
 				if(scaleX < 1) scaleX = scaleY = 1;
-				dispatchEvent( new TouchSheetEvent( TouchSheetEvent.TOUCHING ) );
+				dispatchEvent( new TouchSheetEvent( TouchSheetEvent.PINCHING ) );
             }
         }
         

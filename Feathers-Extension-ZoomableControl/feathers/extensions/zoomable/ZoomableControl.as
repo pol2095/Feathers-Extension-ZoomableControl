@@ -7,6 +7,7 @@ accordance with the terms of the accompanying license agreement.
 package feathers.extensions.zoomable
 {
 	import feathers.core.FeathersControl;
+	import feathers.controls.ScrollContainer;
 	
     import feathers.extensions.utils.TouchSheet;
 	
@@ -19,6 +20,10 @@ package feathers.extensions.zoomable
 	public class ZoomableControl extends FeathersControl
     {
 		private var sheet:TouchSheet;
+		/**
+		 * The ScrollContainer of this control.
+		 */
+		public var scroller:ScrollContainer;
 		
 		public function ZoomableControl()
         {
@@ -32,23 +37,22 @@ package feathers.extensions.zoomable
         {
 			if(sheet)
 			{
-				if( sheet.hasEventListener(TouchSheetEvent.TOUCHING) )
-				{
-					sheet.dispose();
-					sheet.removeChildren();
-					this.removeChild(sheet);
-				}
+				sheet.dispose();
+				sheet.removeChildren();
+				this.removeChild(sheet);
+				sheet.removeEventListener(TouchSheetEvent.PINCHING, onPinching);
 			}
 			
-			sheet = new TouchSheet( displayObject );
-			sheet.addEventListener(TouchSheetEvent.TOUCHING, onTouching);
+			sheet = new TouchSheet( displayObject, stage );
+			sheet.addEventListener(TouchSheetEvent.PINCHING, onPinching);
             this.addChild(sheet);
 			this.invalidate(INVALIDATION_FLAG_LAYOUT);
 		}
 		
-		private function onTouching(event:TouchSheetEvent):void
+		private function onPinching(event:TouchSheetEvent):void
         {
 			this.invalidate(INVALIDATION_FLAG_LAYOUT);
+			if(scroller) scroller.stopScrolling();
 		}
 		/**
 		 * @private
