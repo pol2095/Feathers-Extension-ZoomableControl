@@ -43,7 +43,7 @@ package feathers.extensions.zoomable
 				sheet.removeEventListener(TouchSheetEvent.PINCHING, onPinching);
 			}
 			
-			sheet = new TouchSheet( displayObject, stage );
+			sheet = new TouchSheet( displayObject );
 			sheet.addEventListener(TouchSheetEvent.PINCHING, onPinching);
             this.addChild(sheet);
 			this.invalidate(INVALIDATION_FLAG_LAYOUT);

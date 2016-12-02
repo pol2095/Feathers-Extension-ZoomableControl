@@ -10,6 +10,7 @@ package feathers.extensions.utils
 
     import starling.display.DisplayObject;
     import starling.display.Sprite;
+	import starling.events.Event;
     import starling.events.Touch;
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
@@ -17,19 +18,29 @@ package feathers.extensions.utils
 	
     public class TouchSheet extends Sprite
     {
-		public function TouchSheet(contents:DisplayObject, stage:Object)
+		private var getPreviousLocationA:Point;
+		private var getPreviousLocationB:Point;
+		
+		public function TouchSheet(contents:DisplayObject)
         {
-            addEventListener(TouchEvent.TOUCH, onTouch);
-            
-            if (contents)
+            this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			if (contents)
             {
                 addChild(contents);
             }
+		}
+		private function onAddedToStage(event:Event):void
+		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			stage.addEventListener(TouchEvent.TOUCH, onTouch);
         }
         
         private function onTouch(event:TouchEvent):void
         {
-			var touches:Vector.<Touch> = event.getTouches(stage, TouchPhase.MOVED);
+			var touchStationary:Vector.<Touch> = event.getTouches(stage, TouchPhase.STATIONARY);
+			var touchMoved:Vector.<Touch> = event.getTouches(stage, TouchPhase.MOVED);
+			var touches:Vector.<Touch> = touchStationary.concat(touchMoved);
+			if (touches.length != 0) if( !touches[0].isTouching(this) ) return;
             
             if (touches.length == 2)
             {
@@ -40,6 +51,13 @@ package feathers.extensions.utils
                 var previousPosA:Point = touchA.getPreviousLocation(parent);
                 var currentPosB:Point  = touchB.getLocation(parent);
                 var previousPosB:Point = touchB.getPreviousLocation(parent);
+				
+				if(getPreviousLocationA && getPreviousLocationB)
+				{
+					if(getPreviousLocationA.toString() == previousPosA.toString() && getPreviousLocationB.toString() == previousPosB.toString()) return;
+				}
+				getPreviousLocationA = previousPosA;
+				getPreviousLocationB = previousPosB;
                 
                 var currentVector:Point  = currentPosA.subtract(currentPosB);
                 var previousVector:Point = previousPosA.subtract(previousPosB);
@@ -54,7 +72,7 @@ package feathers.extensions.utils
         
         public override function dispose():void
         {
-            removeEventListener(TouchEvent.TOUCH, onTouch);
+            stage.removeEventListener(TouchEvent.TOUCH, onTouch);
             super.dispose();
         }
     }
