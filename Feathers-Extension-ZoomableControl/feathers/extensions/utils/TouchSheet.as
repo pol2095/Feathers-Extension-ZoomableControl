@@ -52,6 +52,7 @@ package feathers.extensions.utils
                 var currentPosB:Point  = touchB.getLocation(parent);
                 var previousPosB:Point = touchB.getPreviousLocation(parent);
 				
+				//Windows fix
 				if(getPreviousLocationA && getPreviousLocationB)
 				{
 					if(getPreviousLocationA.toString() == previousPosA.toString() && getPreviousLocationB.toString() == previousPosB.toString()) return;
