@@ -40,10 +40,7 @@ package feathers.extensions.utils
 			var touchStationary:Vector.<Touch> = event.getTouches(stage, TouchPhase.STATIONARY);
 			var touchMoved:Vector.<Touch> = event.getTouches(stage, TouchPhase.MOVED);
 			var touches:Vector.<Touch> = touchStationary.concat(touchMoved);
-			for(var i:int = 0; i < touches.length; i++)
-			{
-				if( !touches[i].isTouching(this) ) return;
-			}
+			if (touches.length != 0) if( !touches[0].isTouching(this) ) return;
             
             if (touches.length == 2)
             {
