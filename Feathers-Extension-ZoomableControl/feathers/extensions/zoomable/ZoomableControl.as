@@ -9,7 +9,7 @@ package feathers.extensions.zoomable
 	import feathers.core.FeathersControl;
 	import feathers.controls.ScrollContainer;
 	
-    import feathers.extensions.utils.TouchSheet;
+    import feathers.extensions.utils.TouchSheetLite;
 	
 	import feathers.extensions.utils.events.TouchSheetEvent;
 	import starling.display.DisplayObject;
@@ -19,7 +19,7 @@ package feathers.extensions.zoomable
 	 */
 	public class ZoomableControl extends FeathersControl
     {
-		private var sheet:TouchSheet;
+		private var sheet:TouchSheetLite;
 		/**
 		 * The ScrollContainer of this control.
 		 */
@@ -43,7 +43,7 @@ package feathers.extensions.zoomable
 				sheet.removeEventListener(TouchSheetEvent.PINCHING, onPinching);
 			}
 			
-			sheet = new TouchSheet( displayObject );
+			sheet = new TouchSheetLite( displayObject );
 			sheet.addEventListener(TouchSheetEvent.PINCHING, onPinching);
             this.addChild(sheet);
 			this.invalidate(INVALIDATION_FLAG_LAYOUT);

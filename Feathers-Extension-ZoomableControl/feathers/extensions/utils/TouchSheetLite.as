@@ -16,12 +16,12 @@ package feathers.extensions.utils
     import starling.events.TouchPhase;
 	import feathers.extensions.utils.events.TouchSheetEvent;
 	
-    public class TouchSheet extends Sprite
+    public class TouchSheetLite extends Sprite
     {
 		private var getPreviousLocationA:Point;
 		private var getPreviousLocationB:Point;
 		
-		public function TouchSheet(contents:DisplayObject)
+		public function TouchSheetLite(contents:DisplayObject)
         {
             this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			if (contents)
@@ -55,7 +55,7 @@ package feathers.extensions.utils
 				//Windows fix
 				if(getPreviousLocationA && getPreviousLocationB)
 				{
-					if(getPreviousLocationA.toString() == previousPosA.toString() && getPreviousLocationB.toString() == previousPosB.toString()) return;
+					if( getPreviousLocationA.equals(previousPosA) && getPreviousLocationB.equals(previousPosB) ) return;
 				}
 				getPreviousLocationA = previousPosA;
 				getPreviousLocationB = previousPosB;
