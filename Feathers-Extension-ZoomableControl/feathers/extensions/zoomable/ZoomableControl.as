@@ -86,5 +86,14 @@ package feathers.extensions.zoomable
  
             return this.setSizeInternal(newWidth, newHeight, false);
         }
+		
+		/**
+		 * @private
+		 */
+		override public function dispose():void
+		{
+			if(sheet) sheet.removeEventListener(TouchSheetEvent.PINCHING, onPinching);
+			super.dispose();
+		}
 	}
 }
